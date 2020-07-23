@@ -11,3 +11,27 @@ CREATE ROLE svc_application WITH
 GRANT SELECT ON ALL TABLES IN SCHEMA public TO svc_application;
 GRANT SELECT ON ALL TABLES IN SCHEMA dbo TO svc_application;
 GRANT insert ON ALL TABLES IN SCHEMA dbo TO svc_application;
+
+REVOKE CONNECT ON DATABASE entertainment FROM PUBLIC;
+
+GRANT CONNECT
+ON DATABASE entertainment 
+TO svc_application;
+
+REVOKE ALL
+ON ALL TABLES IN SCHEMA dbo 
+FROM PUBLIC;
+
+GRANT SELECT, INSERT
+ON ALL TABLES IN SCHEMA dbo 
+TO svc_application;
+
+ALTER DEFAULT PRIVILEGES 
+    FOR ROLE svc_application   -- Alternatively "FOR USER"
+    IN SCHEMA public
+    GRANT SELECT, INSERT ON TABLES TO svc_application;
+	
+GRANT USAGE ON SCHEMA dbo TO svc_application ;
+
+GRANT SELECT, INSERT ON ALL TABLES IN SCHEMA dbo TO svc_application ;
+

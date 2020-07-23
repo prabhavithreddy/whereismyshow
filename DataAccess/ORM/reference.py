@@ -1,15 +1,18 @@
 import json
+from datetime import datetime
+
 from sqlalchemy import Column, Integer, String
 from Models.base import Base
 
 
 class Reference(Base):
     __tablename__ = 'reference'
+    __table_args__ = {'schema': 'dbo'}
 
     id = Column('id', Integer, primary_key=True)
     name = Column('name', String)
     icon_url = Column('icon_url', String)
-    inserted_date = Column('inserted_date', String)
+    inserted_date = Column('inserted_date', String, default=datetime.utcnow())
 
     def __init__(self, name: str, icon_url:str):
         self.name = name
@@ -20,4 +23,5 @@ class Reference(Base):
         dictionary['id'] = self.id
         dictionary['name'] = self.name
         dictionary['icon_url'] = self.icon_url
+        dictionary['inserted_date'] = self.inserted_date
         return json.dumps(dictionary)

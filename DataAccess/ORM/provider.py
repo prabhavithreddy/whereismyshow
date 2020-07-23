@@ -1,15 +1,18 @@
 import json
+from datetime import datetime
+
 from sqlalchemy import Column, Integer, String, DATETIME
 from Models.base import Base
 
 
 class Provider(Base):
     __tablename__ = 'provider'
+    __table_args__ = {'schema': 'dbo'}
 
     id = Column('id', Integer, primary_key=True)
     name = Column('name', String)
     image_url = Column('image_url', String)
-    inserted_date = Column('inserted_date', String)
+    inserted_date = Column('inserted_date', String, default=datetime.utcnow())
 
     def __init__(self, name: str, image_url: str):
         self.name = name
