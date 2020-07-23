@@ -1,0 +1,9 @@
+{
+  "Environment": "dev",
+  "Server": "localhost",
+  "UserName": "svc_application",
+  "Password": "R3FFxhfrSdGucCJ7",
+  "DataBase": "entertainment",
+  "Dialect": "postgresql",
+  "Port": "5432"
+}

@@ -1,0 +1,78 @@
+{
+  "results": [
+    {
+      "id": "5d91416b302b840050ad2718",
+      "picture": "https://utellyassets9-1.imgix.net/api/Images/8698c96ae0e0038b81b661c8b2068ca1/Redirect",
+      "name": "Lucifer",
+      "locations": [
+        {
+          "icon": "https://utellyassets7.imgix.net/locations_icons/utelly/black_new/NetflixIVAIN.png?w=92&auto=compress&app_version=5cb1e6a4-e86c-45a8-bd57-1fe10ea6e2ca_eww2020-07-18",
+          "display_name": "Netflix",
+          "name": "NetflixIVAIN",
+          "id": "5d84d6e1d95dc7385f6a4420",
+          "url": "https://www.netflix.com/title/80138262"
+        }
+      ],
+      "provider": "iva",
+      "weight": 9993,
+      "external_ids": {
+        "iva_rating": null,
+        "imdb": {
+          "url": "https://www.imdb.com/title/tt4052886",
+          "id": "tt4052886"
+        },
+        "tmdb": {
+          "url": "https://www.themoviedb.org/tv/63174",
+          "id": "63174"
+        },
+        "wiki_data": {
+          "url": "https://www.wikidata.org/wiki/Q19520525",
+          "id": "Q19520525"
+        },
+        "iva": { "id": "252750" },
+        "gracenote": null,
+        "rotten_tomatoes": null,
+        "facebook": null
+      }
+    },
+    {
+      "id": "5e2ce0fb90c0e033a4883073",
+      "picture": "https://utellyassets9-1.imgix.net/api/Images/52a813360c68af256f523bf16052197e/Redirect",
+      "name": "Lucifer",
+      "locations": [
+        {
+          "icon": "https://utellyassets7.imgix.net/locations_icons/utelly/black_new/AmazonPrimeVideoIVAIN.png?w=92&auto=compress&app_version=5cb1e6a4-e86c-45a8-bd57-1fe10ea6e2ca_eww2020-07-18",
+          "display_name": "Amazon Prime Video",
+          "name": "AmazonPrimeVideoIVAIN",
+          "id": "5d84d6ddd95dc7385f6a43e9",
+          "url": "https://www.primevideo.com/detail/amzn1.dv.gti.90b54da0-3767-8327-44bb-156727659135?ie=UTF8&linkCode=xm2&tag=utellycom00-21"
+        }
+      ],
+      "provider": "iva",
+      "weight": 0,
+      "external_ids": {
+        "iva_rating": null,
+        "imdb": {
+          "url": "https://www.imdb.com/title/tt6067752",
+          "id": "tt6067752"
+        },
+        "tmdb": {
+          "url": "https://www.themoviedb.org/movie/564701",
+          "id": "564701"
+        },
+        "wiki_data": {
+          "url": "https://www.wikidata.org/wiki/Q55621418",
+          "id": "Q55621418"
+        },
+        "iva": { "id": "425462" },
+        "gracenote": null,
+        "rotten_tomatoes": null,
+        "facebook": null
+      }
+    }
+  ],
+  "updated": "2020-07-18T05:09:08+0100",
+  "term": "lucifer",
+  "status_code": 200,
+  "variant": "ivafull"
+}

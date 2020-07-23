@@ -1,0 +1,21 @@
+2020-07-20 19:18:17,884 - root - INFO - Test
+2020-07-20 19:18:17,884 - root - ERROR - division by zero
+Traceback (most recent call last):
+  File "C:/work/github/myrestapi/logger.py", line 32, in <module>
+    r = 1/0
+ZeroDivisionError: division by zero
+2020-07-20 19:53:12,760 - root - ERROR - Exception while parsing Shows: 'NoneType' object has no attribute 'append'
+Traceback (most recent call last):
+  File "C:/work/github/myrestapi/Model/show.py", line 40, in getShows
+    show.ExternalLinks.append(
+AttributeError: 'NoneType' object has no attribute 'append'
+2020-07-21 08:23:14,219 - root - ERROR - Exception while parsing Shows: 'NoneType' object has no attribute 'append'
+Traceback (most recent call last):
+  File "C:/work/github/myrestapi/Model/show.py", line 42, in getShows
+    show.ExternalLinks.append(
+AttributeError: 'NoneType' object has no attribute 'append'
+2020-07-21 08:23:33,195 - root - ERROR - Exception while parsing Shows: 'NoneType' object has no attribute 'append'
+Traceback (most recent call last):
+  File "C:/work/github/myrestapi/Model/show.py", line 42, in getShows
+    show.ExternalLinks.append(
+AttributeError: 'NoneType' object has no attribute 'append'

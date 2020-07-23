@@ -1,0 +1,10 @@
+{
+  "Environment": "dev",
+  "Server": "ccnsource-staging-failover.prod.factset.com",
+  "UserName": "ccnsource",
+  "Password": "r4KJ2ov",
+  "DataBase": "ccnsourceqa",
+  "Driver": "ODBC+Driver+13+for+SQL+Server",
+  "Dialect": "mssql+pyodbc",
+  "Port": "1433"
+}
