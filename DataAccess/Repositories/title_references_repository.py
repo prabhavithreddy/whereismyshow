@@ -2,7 +2,7 @@ from ORM.title_references import TitleReferences
 from Base.repository_base import RepositoryBase
 
 
-class TitleProviderRepository(RepositoryBase):
+class TitleReferencesRepository(RepositoryBase):
 
     def __init__(self):
         super().__init__()
