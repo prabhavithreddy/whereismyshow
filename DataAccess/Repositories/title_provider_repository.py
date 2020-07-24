@@ -19,3 +19,7 @@ class TitleProviderRepository(RepositoryBase):
         session_entity.url = modified_entity.url
         session_entity.inserted_date = modified_entity.inserted_date
         return session_entity
+
+if __name__ == '__main__':
+    title_provider = TitleProvider(1, 2, "https://www.netflix.com/title/80138262")
+    TitleProviderRepository().Add(title_provider)

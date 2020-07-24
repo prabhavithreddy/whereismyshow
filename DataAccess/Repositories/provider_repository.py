@@ -18,3 +18,7 @@ class ProviderRepository(RepositoryBase):
         session_entity.image_url = modified_entity.image_url
         session_entity.inserted_date = modified_entity.inserted_date
         return session_entity
+
+if __name__ == '__main__':
+    provider = Provider("Netflix","https://utellyassets7.imgix.net/locations_icons/utelly/black_new/NetflixIVAIN.png?w=92&auto=compress&app_version=5cb1e6a4-e86c-45a8-bd57-1fe10ea6e2ca_eww2020-07-18")
+    ProviderRepository().Add(provider)

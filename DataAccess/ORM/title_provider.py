@@ -10,12 +10,12 @@ class TitleProvider(Base):
     __table_args__ = {'schema': 'dbo'}
 
     id = Column('id', Integer, primary_key=True)
-    title_id = Column('name', int)
-    provider_id = Column('name', int)
-    url = Column('icon_url', String)
+    title_id = Column('title_id', Integer)
+    provider_id = Column('provider_id', Integer)
+    url = Column('url', String)
     inserted_date = Column('inserted_date', String, default=datetime.utcnow())
 
-    def __init__(self, title_id:int, provider_id:int,url:str):
+    def __init__(self, title_id:int, provider_id:int, url:str):
         self.title_id = title_id
         self.provider_id = provider_id
         self.url = url

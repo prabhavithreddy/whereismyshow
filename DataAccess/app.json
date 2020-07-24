@@ -1,8 +1,8 @@
 {
   "Environment": "dev",
   "Server": "localhost",
-  "UserName": "svc_application",
-  "Password": "R3FFxhfrSdGucCJ7",
+  "UserName": "svc_developer",
+  "Password": "svc_developer",
   "DataBase": "entertainment",
   "Dialect": "postgresql",
   "Port": "5432"
