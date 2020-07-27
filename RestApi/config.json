@@ -1,10 +1,7 @@
 {
+  "Message": "Welcome to RestApi",
   "Environment": "dev",
-  "Server": "ccnsource-staging-failover.prod.factset.com",
-  "UserName": "ccnsource",
-  "Password": "r4KJ2ov",
-  "DataBase": "ccnsourceqa",
-  "Driver": "ODBC+Driver+13+for+SQL+Server",
-  "Dialect": "mssql+pyodbc",
-  "Port": "1433"
+  "Feed": "https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup?term={0}&country=in",
+  "FeedKey": "d55e9ad284mshbf77641ddacb855p17320ajsndde4abae3bf7",
+  "DataBaseService": "http://localhost:5000/api/v1/addmedia"
 }

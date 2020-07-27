@@ -1,151 +1,185 @@
-2020-07-23 09:01:59,272 - root - ERROR - Exception occurred while adding a entity.
-(psycopg2.errors.UndefinedTable) relation "dbo.title" does not exist
-LINE 1: INSERT INTO "dbo.title" (title_id, picture, name, inserted_d...
-                    ^
- [SQL: 'INSERT INTO "dbo.title" (title_id, picture, name, inserted_date) VALUES (%(title_id)s, %(picture)s, %(name)s, %(inserted_date)s) RETURNING "dbo.title".id'] [parameters: {'title_id': '5d91416b302b840050ad2718', 'picture': 'https://utellyassets9-1.imgix.net/api/Images/8698c96ae0e0038b81b661c8b2068ca1/Redirect', 'name': 'Lucifer', 'inserted_date': None}] (Background on this error at: http://sqlalche.me/e/f405)
+2020-07-27 16:28:53,199 - root - ERROR - Exception while parsing media json
+'NoneType' object has no attribute 'title_id'
 Traceback (most recent call last):
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1193, in _execute_context
-    context)
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\default.py", line 507, in do_execute
-    cursor.execute(statement, parameters)
-psycopg2.errors.UndefinedTable: relation "dbo.title" does not exist
-LINE 1: INSERT INTO "dbo.title" (title_id, picture, name, inserted_d...
-                    ^
-
-
-The above exception was the direct cause of the following exception:
-
+  File "C:/work/github/whereismyshow/DataAccess/Services/media_service.py", line 54, in add_media
+    title = self.__add_title(show)
+  File "C:/work/github/whereismyshow/DataAccess/Services/media_service.py", line 79, in __add_title
+    title.title_id = show["Id"]
+AttributeError: 'NoneType' object has no attribute 'title_id'
+2020-07-27 16:30:57,987 - root - ERROR - Exception while parsing media json
+Instance <Reference at 0x24457f735f8> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
 Traceback (most recent call last):
-  File "C:\work\github\whereismyshow\DataAccess\Base\repository_base.py", line 59, in AddBulk
-    session.commit()
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\session.py", line 937, in commit
-    self.transaction.commit()
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\session.py", line 461, in commit
-    self._prepare_impl()
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\session.py", line 441, in _prepare_impl
-    self.session.flush()
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\session.py", line 2237, in flush
-    self._flush(objects)
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\session.py", line 2363, in _flush
-    transaction.rollback(_capture_exception=True)
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\util\langhelpers.py", line 66, in __exit__
-    compat.reraise(exc_type, exc_value, exc_tb)
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\util\compat.py", line 187, in reraise
-    raise value
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\session.py", line 2327, in _flush
-    flush_context.execute()
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 391, in execute
-    rec.execute(self)
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 556, in execute
-    uow
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\persistence.py", line 181, in save_obj
-    mapper, table, insert)
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\persistence.py", line 866, in _emit_insert_statements
-    execute(statement, params)
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 948, in execute
-    return meth(self, multiparams, params)
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\sql\elements.py", line 269, in _execute_on_connection
-    return connection._execute_clauseelement(self, multiparams, params)
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1060, in _execute_clauseelement
-    compiled_sql, distilled_params
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1200, in _execute_context
-    context)
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1413, in _handle_dbapi_exception
-    exc_info
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\util\compat.py", line 203, in raise_from_cause
-    reraise(type(exception), exception, tb=exc_tb, cause=cause)
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\util\compat.py", line 186, in reraise
-    raise value.with_traceback(tb)
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1193, in _execute_context
-    context)
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\default.py", line 507, in do_execute
-    cursor.execute(statement, parameters)
-sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedTable) relation "dbo.title" does not exist
-LINE 1: INSERT INTO "dbo.title" (title_id, picture, name, inserted_d...
-                    ^
- [SQL: 'INSERT INTO "dbo.title" (title_id, picture, name, inserted_date) VALUES (%(title_id)s, %(picture)s, %(name)s, %(inserted_date)s) RETURNING "dbo.title".id'] [parameters: {'title_id': '5d91416b302b840050ad2718', 'picture': 'https://utellyassets9-1.imgix.net/api/Images/8698c96ae0e0038b81b661c8b2068ca1/Redirect', 'name': 'Lucifer', 'inserted_date': None}] (Background on this error at: http://sqlalche.me/e/f405)
-2020-07-23 20:31:42,429 - root - ERROR - Exception occurred while adding a entity.
-(psycopg2.errors.UndefinedTable) relation "title" does not exist
-LINE 1: INSERT INTO title (title_id, picture, name, inserted_date) V...
-                    ^
- [SQL: 'INSERT INTO title (title_id, picture, name, inserted_date) VALUES (%(title_id)s, %(picture)s, %(name)s, %(inserted_date)s) RETURNING title.id'] [parameters: {'title_id': '5d91416b302b840050ad2718', 'picture': 'https://utellyassets9-1.imgix.net/api/Images/8698c96ae0e0038b81b661c8b2068ca1/Redirect', 'name': 'Lucifer', 'inserted_date': None}] (Background on this error at: http://sqlalche.me/e/f405)
+  File "C:/work/github/whereismyshow/DataAccess/Services/media_service.py", line 63, in add_media
+    if not self.__add_references(title, show).is_saved:
+  File "C:/work/github/whereismyshow/DataAccess/Services/media_service.py", line 117, in __add_references
+    title_reference = TitleReferences(title.id, reference.id, externalLink["Id"])
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 287, in __get__
+    return self.impl.get(instance_state(instance), dict_)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 718, in get
+    value = state._load_expired(state, passive)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\state.py", line 652, in _load_expired
+    self.manager.deferred_scalar_loader(self, toload)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\loading.py", line 946, in load_scalar_attributes
+    "attribute refresh operation cannot proceed" % (state_str(state))
+sqlalchemy.orm.exc.DetachedInstanceError: Instance <Reference at 0x24457f735f8> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
+2020-07-27 16:30:57,987 - root - ERROR - Exception while parsing media json
+Instance <Reference at 0x24457f735f8> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
 Traceback (most recent call last):
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1193, in _execute_context
-    context)
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\default.py", line 507, in do_execute
-    cursor.execute(statement, parameters)
-psycopg2.errors.UndefinedTable: relation "title" does not exist
-LINE 1: INSERT INTO title (title_id, picture, name, inserted_date) V...
-                    ^
-
-
-The above exception was the direct cause of the following exception:
-
+  File "C:/work/github/whereismyshow/DataAccess/Services/media_service.py", line 63, in add_media
+    if not self.__add_references(title, show).is_saved:
+  File "C:/work/github/whereismyshow/DataAccess/Services/media_service.py", line 117, in __add_references
+    title_reference = TitleReferences(title.id, reference.id, externalLink["Id"])
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 287, in __get__
+    return self.impl.get(instance_state(instance), dict_)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 718, in get
+    value = state._load_expired(state, passive)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\state.py", line 652, in _load_expired
+    self.manager.deferred_scalar_loader(self, toload)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\loading.py", line 946, in load_scalar_attributes
+    "attribute refresh operation cannot proceed" % (state_str(state))
+sqlalchemy.orm.exc.DetachedInstanceError: Instance <Reference at 0x24457f735f8> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
+2020-07-27 16:36:06,891 - root - ERROR - Exception while parsing media json
+Instance <Provider at 0x1e1536ac400> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
 Traceback (most recent call last):
-  File "C:\work\github\whereismyshow\DataAccess\Base\repository_base.py", line 59, in AddBulk
-    session.commit()
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\session.py", line 937, in commit
-    self.transaction.commit()
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\session.py", line 461, in commit
-    self._prepare_impl()
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\session.py", line 441, in _prepare_impl
-    self.session.flush()
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\session.py", line 2237, in flush
-    self._flush(objects)
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\session.py", line 2363, in _flush
-    transaction.rollback(_capture_exception=True)
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\util\langhelpers.py", line 66, in __exit__
-    compat.reraise(exc_type, exc_value, exc_tb)
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\util\compat.py", line 187, in reraise
-    raise value
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\session.py", line 2327, in _flush
-    flush_context.execute()
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 391, in execute
-    rec.execute(self)
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 556, in execute
-    uow
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\persistence.py", line 181, in save_obj
-    mapper, table, insert)
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\persistence.py", line 866, in _emit_insert_statements
-    execute(statement, params)
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 948, in execute
-    return meth(self, multiparams, params)
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\sql\elements.py", line 269, in _execute_on_connection
-    return connection._execute_clauseelement(self, multiparams, params)
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1060, in _execute_clauseelement
-    compiled_sql, distilled_params
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1200, in _execute_context
-    context)
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1413, in _handle_dbapi_exception
-    exc_info
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\util\compat.py", line 203, in raise_from_cause
-    reraise(type(exception), exception, tb=exc_tb, cause=cause)
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\util\compat.py", line 186, in reraise
-    raise value.with_traceback(tb)
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1193, in _execute_context
-    context)
-  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\default.py", line 507, in do_execute
-    cursor.execute(statement, parameters)
-sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedTable) relation "title" does not exist
-LINE 1: INSERT INTO title (title_id, picture, name, inserted_date) V...
-                    ^
- [SQL: 'INSERT INTO title (title_id, picture, name, inserted_date) VALUES (%(title_id)s, %(picture)s, %(name)s, %(inserted_date)s) RETURNING title.id'] [parameters: {'title_id': '5d91416b302b840050ad2718', 'picture': 'https://utellyassets9-1.imgix.net/api/Images/8698c96ae0e0038b81b661c8b2068ca1/Redirect', 'name': 'Lucifer', 'inserted_date': None}] (Background on this error at: http://sqlalche.me/e/f405)
-2020-07-23 20:33:38,560 - root - ERROR - Exception occurred while adding a entity.
-(psycopg2.errors.UndefinedTable) relation "title" does not exist
-LINE 1: INSERT INTO title (title_id, picture, name, inserted_date) V...
-                    ^
+  File "C:/work/github/whereismyshow/DataAccess/Services/media_service.py", line 60, in add_media
+    if not self.__add_providers(title, show).is_saved:
+  File "C:/work/github/whereismyshow/DataAccess/Services/media_service.py", line 101, in __add_providers
+    title_provider = TitleProvider(title.id, provider.id, show["Provider"]["Url"])
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 287, in __get__
+    return self.impl.get(instance_state(instance), dict_)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 718, in get
+    value = state._load_expired(state, passive)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\state.py", line 652, in _load_expired
+    self.manager.deferred_scalar_loader(self, toload)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\loading.py", line 946, in load_scalar_attributes
+    "attribute refresh operation cannot proceed" % (state_str(state))
+sqlalchemy.orm.exc.DetachedInstanceError: Instance <Provider at 0x1e1536ac400> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
+2020-07-27 16:36:06,891 - root - ERROR - Exception while parsing media json
+Instance <Provider at 0x1e1536ac400> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
+Traceback (most recent call last):
+  File "C:/work/github/whereismyshow/DataAccess/Services/media_service.py", line 60, in add_media
+    if not self.__add_providers(title, show).is_saved:
+  File "C:/work/github/whereismyshow/DataAccess/Services/media_service.py", line 101, in __add_providers
+    title_provider = TitleProvider(title.id, provider.id, show["Provider"]["Url"])
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 287, in __get__
+    return self.impl.get(instance_state(instance), dict_)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 718, in get
+    value = state._load_expired(state, passive)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\state.py", line 652, in _load_expired
+    self.manager.deferred_scalar_loader(self, toload)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\loading.py", line 946, in load_scalar_attributes
+    "attribute refresh operation cannot proceed" % (state_str(state))
+sqlalchemy.orm.exc.DetachedInstanceError: Instance <Provider at 0x1e1536ac400> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
+2020-07-27 16:40:03,112 - root - ERROR - Exception while parsing media json
+Instance <Provider at 0x19a2b57c470> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
+Traceback (most recent call last):
+  File "C:/work/github/whereismyshow/DataAccess/Services/media_service.py", line 60, in add_media
+    if not self.__add_providers(title, show).is_saved:
+  File "C:/work/github/whereismyshow/DataAccess/Services/media_service.py", line 101, in __add_providers
+    title_provider = TitleProvider(title.id, provider.id, show["Provider"]["Url"])
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 287, in __get__
+    return self.impl.get(instance_state(instance), dict_)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 718, in get
+    value = state._load_expired(state, passive)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\state.py", line 652, in _load_expired
+    self.manager.deferred_scalar_loader(self, toload)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\loading.py", line 946, in load_scalar_attributes
+    "attribute refresh operation cannot proceed" % (state_str(state))
+sqlalchemy.orm.exc.DetachedInstanceError: Instance <Provider at 0x19a2b57c470> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
+2020-07-27 16:40:03,112 - root - ERROR - Exception while parsing media json
+Instance <Provider at 0x19a2b57c470> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
+Traceback (most recent call last):
+  File "C:/work/github/whereismyshow/DataAccess/Services/media_service.py", line 60, in add_media
+    if not self.__add_providers(title, show).is_saved:
+  File "C:/work/github/whereismyshow/DataAccess/Services/media_service.py", line 101, in __add_providers
+    title_provider = TitleProvider(title.id, provider.id, show["Provider"]["Url"])
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 287, in __get__
+    return self.impl.get(instance_state(instance), dict_)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 718, in get
+    value = state._load_expired(state, passive)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\state.py", line 652, in _load_expired
+    self.manager.deferred_scalar_loader(self, toload)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\loading.py", line 946, in load_scalar_attributes
+    "attribute refresh operation cannot proceed" % (state_str(state))
+sqlalchemy.orm.exc.DetachedInstanceError: Instance <Provider at 0x19a2b57c470> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
+2020-07-27 16:41:45,264 - root - ERROR - Exception while parsing media json
+Instance <Provider at 0x2b22ad2c358> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
+Traceback (most recent call last):
+  File "C:/work/github/whereismyshow/DataAccess/Services/media_service.py", line 60, in add_media
+    if not self.__add_providers(title, show).is_saved:
+  File "C:/work/github/whereismyshow/DataAccess/Services/media_service.py", line 101, in __add_providers
+    title_provider = TitleProvider(title.id, provider.id, show["Provider"]["Url"])
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 287, in __get__
+    return self.impl.get(instance_state(instance), dict_)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 718, in get
+    value = state._load_expired(state, passive)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\state.py", line 652, in _load_expired
+    self.manager.deferred_scalar_loader(self, toload)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\loading.py", line 946, in load_scalar_attributes
+    "attribute refresh operation cannot proceed" % (state_str(state))
+sqlalchemy.orm.exc.DetachedInstanceError: Instance <Provider at 0x2b22ad2c358> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
+2020-07-27 16:41:45,264 - root - ERROR - Exception while parsing media json
+Instance <Provider at 0x2b22ad2c358> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
+Traceback (most recent call last):
+  File "C:/work/github/whereismyshow/DataAccess/Services/media_service.py", line 60, in add_media
+    if not self.__add_providers(title, show).is_saved:
+  File "C:/work/github/whereismyshow/DataAccess/Services/media_service.py", line 101, in __add_providers
+    title_provider = TitleProvider(title.id, provider.id, show["Provider"]["Url"])
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 287, in __get__
+    return self.impl.get(instance_state(instance), dict_)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 718, in get
+    value = state._load_expired(state, passive)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\state.py", line 652, in _load_expired
+    self.manager.deferred_scalar_loader(self, toload)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\loading.py", line 946, in load_scalar_attributes
+    "attribute refresh operation cannot proceed" % (state_str(state))
+sqlalchemy.orm.exc.DetachedInstanceError: Instance <Provider at 0x2b22ad2c358> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
+2020-07-27 16:43:26,686 - root - ERROR - Exception while parsing media json
+Instance <Provider at 0x18c25d79358> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
+Traceback (most recent call last):
+  File "C:/work/github/whereismyshow/DataAccess/Services/media_service.py", line 60, in add_media
+    if not self.__add_providers(title, show).is_saved:
+  File "C:/work/github/whereismyshow/DataAccess/Services/media_service.py", line 101, in __add_providers
+    title_provider = TitleProvider(title.id, provider.id, show["Provider"]["Url"])
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 287, in __get__
+    return self.impl.get(instance_state(instance), dict_)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 718, in get
+    value = state._load_expired(state, passive)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\state.py", line 652, in _load_expired
+    self.manager.deferred_scalar_loader(self, toload)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\loading.py", line 946, in load_scalar_attributes
+    "attribute refresh operation cannot proceed" % (state_str(state))
+sqlalchemy.orm.exc.DetachedInstanceError: Instance <Provider at 0x18c25d79358> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
+2020-07-27 16:43:26,686 - root - ERROR - Exception while parsing media json
+Instance <Provider at 0x18c25d79358> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
+Traceback (most recent call last):
+  File "C:/work/github/whereismyshow/DataAccess/Services/media_service.py", line 60, in add_media
+    if not self.__add_providers(title, show).is_saved:
+  File "C:/work/github/whereismyshow/DataAccess/Services/media_service.py", line 101, in __add_providers
+    title_provider = TitleProvider(title.id, provider.id, show["Provider"]["Url"])
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 287, in __get__
+    return self.impl.get(instance_state(instance), dict_)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 718, in get
+    value = state._load_expired(state, passive)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\state.py", line 652, in _load_expired
+    self.manager.deferred_scalar_loader(self, toload)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\loading.py", line 946, in load_scalar_attributes
+    "attribute refresh operation cannot proceed" % (state_str(state))
+sqlalchemy.orm.exc.DetachedInstanceError: Instance <Provider at 0x18c25d79358> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
+2020-07-27 16:44:49,798 - root - ERROR - Exception occurred while adding a entity.
+(psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "title_title_id_key"
+DETAIL:  Key (title_id)=(5d91416b302b840050ad2718) already exists.
 
-[SQL: INSERT INTO title (title_id, picture, name, inserted_date) VALUES (%(title_id)s, %(picture)s, %(name)s, %(inserted_date)s) RETURNING title.id]
-[parameters: {'title_id': '5d91416b302b840050ad2718', 'picture': 'https://utellyassets9-1.imgix.net/api/Images/8698c96ae0e0038b81b661c8b2068ca1/Redirect', 'name': 'Lucifer', 'inserted_date': None}]
-(Background on this error at: http://sqlalche.me/e/13/f405)
+[SQL: INSERT INTO dbo.title (title_id, picture, name, inserted_date) VALUES (%(title_id)s, %(picture)s, %(name)s, %(inserted_date)s) RETURNING dbo.title.id]
+[parameters: {'title_id': '5d91416b302b840050ad2718', 'picture': 'https://utellyassets9-1.imgix.net/api/Images/8698c96ae0e0038b81b661c8b2068ca1/Redirect', 'name': 'Lucifer', 'inserted_date': datetime.datetime(2020, 7, 27, 11, 14, 49, 326563)}]
+(Background on this error at: http://sqlalche.me/e/13/gkpj)
 Traceback (most recent call last):
   File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1278, in _execute_context
     cursor, statement, parameters, context
   File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
     cursor.execute(statement, parameters)
-psycopg2.errors.UndefinedTable: relation "title" does not exist
-LINE 1: INSERT INTO title (title_id, picture, name, inserted_date) V...
-                    ^
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "title_title_id_key"
+DETAIL:  Key (title_id)=(5d91416b302b840050ad2718) already exists.
 
 
 The above exception was the direct cause of the following exception:
@@ -193,10 +227,310 @@ Traceback (most recent call last):
     cursor, statement, parameters, context
   File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
     cursor.execute(statement, parameters)
-sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedTable) relation "title" does not exist
-LINE 1: INSERT INTO title (title_id, picture, name, inserted_date) V...
-                    ^
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "title_title_id_key"
+DETAIL:  Key (title_id)=(5d91416b302b840050ad2718) already exists.
 
-[SQL: INSERT INTO title (title_id, picture, name, inserted_date) VALUES (%(title_id)s, %(picture)s, %(name)s, %(inserted_date)s) RETURNING title.id]
-[parameters: {'title_id': '5d91416b302b840050ad2718', 'picture': 'https://utellyassets9-1.imgix.net/api/Images/8698c96ae0e0038b81b661c8b2068ca1/Redirect', 'name': 'Lucifer', 'inserted_date': None}]
-(Background on this error at: http://sqlalche.me/e/13/f405)
+[SQL: INSERT INTO dbo.title (title_id, picture, name, inserted_date) VALUES (%(title_id)s, %(picture)s, %(name)s, %(inserted_date)s) RETURNING dbo.title.id]
+[parameters: {'title_id': '5d91416b302b840050ad2718', 'picture': 'https://utellyassets9-1.imgix.net/api/Images/8698c96ae0e0038b81b661c8b2068ca1/Redirect', 'name': 'Lucifer', 'inserted_date': datetime.datetime(2020, 7, 27, 11, 14, 49, 326563)}]
+(Background on this error at: http://sqlalche.me/e/13/gkpj)
+2020-07-27 16:44:49,798 - root - ERROR - Exception occurred while adding a entity.
+(psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "title_title_id_key"
+DETAIL:  Key (title_id)=(5d91416b302b840050ad2718) already exists.
+
+[SQL: INSERT INTO dbo.title (title_id, picture, name, inserted_date) VALUES (%(title_id)s, %(picture)s, %(name)s, %(inserted_date)s) RETURNING dbo.title.id]
+[parameters: {'title_id': '5d91416b302b840050ad2718', 'picture': 'https://utellyassets9-1.imgix.net/api/Images/8698c96ae0e0038b81b661c8b2068ca1/Redirect', 'name': 'Lucifer', 'inserted_date': datetime.datetime(2020, 7, 27, 11, 14, 49, 326563)}]
+(Background on this error at: http://sqlalche.me/e/13/gkpj)
+Traceback (most recent call last):
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1278, in _execute_context
+    cursor, statement, parameters, context
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "title_title_id_key"
+DETAIL:  Key (title_id)=(5d91416b302b840050ad2718) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\work\github\whereismyshow\DataAccess\Base\repository_base.py", line 59, in AddBulk
+    session.commit()
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\session.py", line 1042, in commit
+    self.transaction.commit()
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\session.py", line 504, in commit
+    self._prepare_impl()
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\session.py", line 483, in _prepare_impl
+    self.session.flush()
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\session.py", line 2523, in flush
+    self._flush(objects)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\session.py", line 2664, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\util\langhelpers.py", line 69, in __exit__
+    exc_value, with_traceback=exc_tb,
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\util\compat.py", line 178, in raise_
+    raise exception
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\session.py", line 2624, in _flush
+    flush_context.execute()
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 422, in execute
+    rec.execute(self)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 589, in execute
+    uow,
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\persistence.py", line 245, in save_obj
+    insert,
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\persistence.py", line 1136, in _emit_insert_statements
+    statement, params
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1014, in execute
+    return meth(self, multiparams, params)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\sql\elements.py", line 298, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1133, in _execute_clauseelement
+    distilled_params,
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1318, in _execute_context
+    e, statement, parameters, cursor, context
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1512, in _handle_dbapi_exception
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\util\compat.py", line 178, in raise_
+    raise exception
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1278, in _execute_context
+    cursor, statement, parameters, context
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "title_title_id_key"
+DETAIL:  Key (title_id)=(5d91416b302b840050ad2718) already exists.
+
+[SQL: INSERT INTO dbo.title (title_id, picture, name, inserted_date) VALUES (%(title_id)s, %(picture)s, %(name)s, %(inserted_date)s) RETURNING dbo.title.id]
+[parameters: {'title_id': '5d91416b302b840050ad2718', 'picture': 'https://utellyassets9-1.imgix.net/api/Images/8698c96ae0e0038b81b661c8b2068ca1/Redirect', 'name': 'Lucifer', 'inserted_date': datetime.datetime(2020, 7, 27, 11, 14, 49, 326563)}]
+(Background on this error at: http://sqlalche.me/e/13/gkpj)
+2020-07-27 16:44:49,814 - root - INFO - Unable to save the show.
+{"Id": "5d91416b302b840050ad2718", "ImageUrl": "https://utellyassets9-1.imgix.net/api/Images/8698c96ae0e0038b81b661c8b2068ca1/Redirect", "Title": "Lucifer", "Provider": {"Id": "5d84d6e1d95dc7385f6a4420", "Url": "https://www.netflix.com/title/80138262", "Name": "Netflix", "Icon": "https://utellyassets7.imgix.net/locations_icons/utelly/black_new/NetflixIVAIN.png?w=92&auto=compress&app_version=5cb1e6a4-e86c-45a8-bd57-1fe10ea6e2ca_eww2020-07-18"}, "ExternalLinks": [{"Id": "tt4052886", "Url": "https://www.imdb.com/title/tt4052886", "Name": "IMDB"}, {"Id": "Q19520525", "Url": "https://www.wikidata.org/wiki/Q19520525", "Name": "WIKI"}]}
+2020-07-27 16:44:49,814 - root - INFO - Unable to save the show.
+{"Id": "5d91416b302b840050ad2718", "ImageUrl": "https://utellyassets9-1.imgix.net/api/Images/8698c96ae0e0038b81b661c8b2068ca1/Redirect", "Title": "Lucifer", "Provider": {"Id": "5d84d6e1d95dc7385f6a4420", "Url": "https://www.netflix.com/title/80138262", "Name": "Netflix", "Icon": "https://utellyassets7.imgix.net/locations_icons/utelly/black_new/NetflixIVAIN.png?w=92&auto=compress&app_version=5cb1e6a4-e86c-45a8-bd57-1fe10ea6e2ca_eww2020-07-18"}, "ExternalLinks": [{"Id": "tt4052886", "Url": "https://www.imdb.com/title/tt4052886", "Name": "IMDB"}, {"Id": "Q19520525", "Url": "https://www.wikidata.org/wiki/Q19520525", "Name": "WIKI"}]}
+2020-07-27 16:44:49,892 - root - ERROR - Exception occurred while adding a entity.
+(psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "title_title_id_key"
+DETAIL:  Key (title_id)=(5e2ce0fb90c0e033a4883073) already exists.
+
+[SQL: INSERT INTO dbo.title (title_id, picture, name, inserted_date) VALUES (%(title_id)s, %(picture)s, %(name)s, %(inserted_date)s) RETURNING dbo.title.id]
+[parameters: {'title_id': '5e2ce0fb90c0e033a4883073', 'picture': 'https://utellyassets9-1.imgix.net/api/Images/52a813360c68af256f523bf16052197e/Redirect', 'name': 'Lucifer', 'inserted_date': datetime.datetime(2020, 7, 27, 11, 14, 49, 326563)}]
+(Background on this error at: http://sqlalche.me/e/13/gkpj)
+Traceback (most recent call last):
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1278, in _execute_context
+    cursor, statement, parameters, context
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "title_title_id_key"
+DETAIL:  Key (title_id)=(5e2ce0fb90c0e033a4883073) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\work\github\whereismyshow\DataAccess\Base\repository_base.py", line 59, in AddBulk
+    session.commit()
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\session.py", line 1042, in commit
+    self.transaction.commit()
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\session.py", line 504, in commit
+    self._prepare_impl()
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\session.py", line 483, in _prepare_impl
+    self.session.flush()
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\session.py", line 2523, in flush
+    self._flush(objects)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\session.py", line 2664, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\util\langhelpers.py", line 69, in __exit__
+    exc_value, with_traceback=exc_tb,
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\util\compat.py", line 178, in raise_
+    raise exception
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\session.py", line 2624, in _flush
+    flush_context.execute()
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 422, in execute
+    rec.execute(self)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 589, in execute
+    uow,
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\persistence.py", line 245, in save_obj
+    insert,
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\persistence.py", line 1136, in _emit_insert_statements
+    statement, params
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1014, in execute
+    return meth(self, multiparams, params)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\sql\elements.py", line 298, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1133, in _execute_clauseelement
+    distilled_params,
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1318, in _execute_context
+    e, statement, parameters, cursor, context
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1512, in _handle_dbapi_exception
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\util\compat.py", line 178, in raise_
+    raise exception
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1278, in _execute_context
+    cursor, statement, parameters, context
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "title_title_id_key"
+DETAIL:  Key (title_id)=(5e2ce0fb90c0e033a4883073) already exists.
+
+[SQL: INSERT INTO dbo.title (title_id, picture, name, inserted_date) VALUES (%(title_id)s, %(picture)s, %(name)s, %(inserted_date)s) RETURNING dbo.title.id]
+[parameters: {'title_id': '5e2ce0fb90c0e033a4883073', 'picture': 'https://utellyassets9-1.imgix.net/api/Images/52a813360c68af256f523bf16052197e/Redirect', 'name': 'Lucifer', 'inserted_date': datetime.datetime(2020, 7, 27, 11, 14, 49, 326563)}]
+(Background on this error at: http://sqlalche.me/e/13/gkpj)
+2020-07-27 16:44:49,892 - root - ERROR - Exception occurred while adding a entity.
+(psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "title_title_id_key"
+DETAIL:  Key (title_id)=(5e2ce0fb90c0e033a4883073) already exists.
+
+[SQL: INSERT INTO dbo.title (title_id, picture, name, inserted_date) VALUES (%(title_id)s, %(picture)s, %(name)s, %(inserted_date)s) RETURNING dbo.title.id]
+[parameters: {'title_id': '5e2ce0fb90c0e033a4883073', 'picture': 'https://utellyassets9-1.imgix.net/api/Images/52a813360c68af256f523bf16052197e/Redirect', 'name': 'Lucifer', 'inserted_date': datetime.datetime(2020, 7, 27, 11, 14, 49, 326563)}]
+(Background on this error at: http://sqlalche.me/e/13/gkpj)
+Traceback (most recent call last):
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1278, in _execute_context
+    cursor, statement, parameters, context
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "title_title_id_key"
+DETAIL:  Key (title_id)=(5e2ce0fb90c0e033a4883073) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\work\github\whereismyshow\DataAccess\Base\repository_base.py", line 59, in AddBulk
+    session.commit()
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\session.py", line 1042, in commit
+    self.transaction.commit()
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\session.py", line 504, in commit
+    self._prepare_impl()
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\session.py", line 483, in _prepare_impl
+    self.session.flush()
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\session.py", line 2523, in flush
+    self._flush(objects)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\session.py", line 2664, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\util\langhelpers.py", line 69, in __exit__
+    exc_value, with_traceback=exc_tb,
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\util\compat.py", line 178, in raise_
+    raise exception
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\session.py", line 2624, in _flush
+    flush_context.execute()
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 422, in execute
+    rec.execute(self)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 589, in execute
+    uow,
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\persistence.py", line 245, in save_obj
+    insert,
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\persistence.py", line 1136, in _emit_insert_statements
+    statement, params
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1014, in execute
+    return meth(self, multiparams, params)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\sql\elements.py", line 298, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1133, in _execute_clauseelement
+    distilled_params,
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1318, in _execute_context
+    e, statement, parameters, cursor, context
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1512, in _handle_dbapi_exception
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\util\compat.py", line 178, in raise_
+    raise exception
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\base.py", line 1278, in _execute_context
+    cursor, statement, parameters, context
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "title_title_id_key"
+DETAIL:  Key (title_id)=(5e2ce0fb90c0e033a4883073) already exists.
+
+[SQL: INSERT INTO dbo.title (title_id, picture, name, inserted_date) VALUES (%(title_id)s, %(picture)s, %(name)s, %(inserted_date)s) RETURNING dbo.title.id]
+[parameters: {'title_id': '5e2ce0fb90c0e033a4883073', 'picture': 'https://utellyassets9-1.imgix.net/api/Images/52a813360c68af256f523bf16052197e/Redirect', 'name': 'Lucifer', 'inserted_date': datetime.datetime(2020, 7, 27, 11, 14, 49, 326563)}]
+(Background on this error at: http://sqlalche.me/e/13/gkpj)
+2020-07-27 16:44:49,893 - root - INFO - Unable to save the show.
+{"Id": "5e2ce0fb90c0e033a4883073", "ImageUrl": "https://utellyassets9-1.imgix.net/api/Images/52a813360c68af256f523bf16052197e/Redirect", "Title": "Lucifer", "Provider": {"Id": "5d84d6ddd95dc7385f6a43e9", "Url": "https://www.primevideo.com/detail/amzn1.dv.gti.90b54da0-3767-8327-44bb-156727659135?ie=UTF8&linkCode=xm2&tag=utellycom00-21", "Name": "Amazon Prime Video", "Icon": "https://utellyassets7.imgix.net/locations_icons/utelly/black_new/AmazonPrimeVideoIVAIN.png?w=92&auto=compress&app_version=5cb1e6a4-e86c-45a8-bd57-1fe10ea6e2ca_eww2020-07-18"}, "ExternalLinks": [{"Id": "tt6067752", "Url": "https://www.imdb.com/title/tt6067752", "Name": "IMDB"}, {"Id": "Q55621418", "Url": "https://www.wikidata.org/wiki/Q55621418", "Name": "WIKI"}]}
+2020-07-27 16:44:49,893 - root - INFO - Unable to save the show.
+{"Id": "5e2ce0fb90c0e033a4883073", "ImageUrl": "https://utellyassets9-1.imgix.net/api/Images/52a813360c68af256f523bf16052197e/Redirect", "Title": "Lucifer", "Provider": {"Id": "5d84d6ddd95dc7385f6a43e9", "Url": "https://www.primevideo.com/detail/amzn1.dv.gti.90b54da0-3767-8327-44bb-156727659135?ie=UTF8&linkCode=xm2&tag=utellycom00-21", "Name": "Amazon Prime Video", "Icon": "https://utellyassets7.imgix.net/locations_icons/utelly/black_new/AmazonPrimeVideoIVAIN.png?w=92&auto=compress&app_version=5cb1e6a4-e86c-45a8-bd57-1fe10ea6e2ca_eww2020-07-18"}, "ExternalLinks": [{"Id": "tt6067752", "Url": "https://www.imdb.com/title/tt6067752", "Name": "IMDB"}, {"Id": "Q55621418", "Url": "https://www.wikidata.org/wiki/Q55621418", "Name": "WIKI"}]}
+2020-07-27 16:44:59,580 - root - ERROR - Exception while parsing media json
+Instance <Provider at 0x17a61ccc438> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
+Traceback (most recent call last):
+  File "C:/work/github/whereismyshow/DataAccess/Services/media_service.py", line 60, in add_media
+    if not self.__add_providers(title, show).is_saved:
+  File "C:/work/github/whereismyshow/DataAccess/Services/media_service.py", line 101, in __add_providers
+    title_provider = TitleProvider(title.id, provider.id, show["Provider"]["Url"])
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 287, in __get__
+    return self.impl.get(instance_state(instance), dict_)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 718, in get
+    value = state._load_expired(state, passive)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\state.py", line 652, in _load_expired
+    self.manager.deferred_scalar_loader(self, toload)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\loading.py", line 946, in load_scalar_attributes
+    "attribute refresh operation cannot proceed" % (state_str(state))
+sqlalchemy.orm.exc.DetachedInstanceError: Instance <Provider at 0x17a61ccc438> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
+2020-07-27 16:44:59,580 - root - ERROR - Exception while parsing media json
+Instance <Provider at 0x17a61ccc438> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
+Traceback (most recent call last):
+  File "C:/work/github/whereismyshow/DataAccess/Services/media_service.py", line 60, in add_media
+    if not self.__add_providers(title, show).is_saved:
+  File "C:/work/github/whereismyshow/DataAccess/Services/media_service.py", line 101, in __add_providers
+    title_provider = TitleProvider(title.id, provider.id, show["Provider"]["Url"])
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 287, in __get__
+    return self.impl.get(instance_state(instance), dict_)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 718, in get
+    value = state._load_expired(state, passive)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\state.py", line 652, in _load_expired
+    self.manager.deferred_scalar_loader(self, toload)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\loading.py", line 946, in load_scalar_attributes
+    "attribute refresh operation cannot proceed" % (state_str(state))
+sqlalchemy.orm.exc.DetachedInstanceError: Instance <Provider at 0x17a61ccc438> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
+2020-07-27 16:47:19,815 - root - ERROR - Exception while parsing media json
+Instance <Provider at 0x1c7843fc400> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
+Traceback (most recent call last):
+  File "C:/work/github/whereismyshow/DataAccess/Services/media_service.py", line 60, in add_media
+    if not self.__add_providers(title, show).is_saved:
+  File "C:/work/github/whereismyshow/DataAccess/Services/media_service.py", line 101, in __add_providers
+    title_provider = TitleProvider(title.id, provider.id, show["Provider"]["Url"])
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 287, in __get__
+    return self.impl.get(instance_state(instance), dict_)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 718, in get
+    value = state._load_expired(state, passive)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\state.py", line 652, in _load_expired
+    self.manager.deferred_scalar_loader(self, toload)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\loading.py", line 946, in load_scalar_attributes
+    "attribute refresh operation cannot proceed" % (state_str(state))
+sqlalchemy.orm.exc.DetachedInstanceError: Instance <Provider at 0x1c7843fc400> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
+2020-07-27 16:47:19,815 - root - ERROR - Exception while parsing media json
+Instance <Provider at 0x1c7843fc400> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
+Traceback (most recent call last):
+  File "C:/work/github/whereismyshow/DataAccess/Services/media_service.py", line 60, in add_media
+    if not self.__add_providers(title, show).is_saved:
+  File "C:/work/github/whereismyshow/DataAccess/Services/media_service.py", line 101, in __add_providers
+    title_provider = TitleProvider(title.id, provider.id, show["Provider"]["Url"])
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 287, in __get__
+    return self.impl.get(instance_state(instance), dict_)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 718, in get
+    value = state._load_expired(state, passive)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\state.py", line 652, in _load_expired
+    self.manager.deferred_scalar_loader(self, toload)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\loading.py", line 946, in load_scalar_attributes
+    "attribute refresh operation cannot proceed" % (state_str(state))
+sqlalchemy.orm.exc.DetachedInstanceError: Instance <Provider at 0x1c7843fc400> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
+2020-07-27 16:58:16,938 - root - ERROR - Exception while parsing media json
+Instance <Provider at 0x28eae272a58> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
+Traceback (most recent call last):
+  File "C:/work/github/whereismyshow/DataAccess/Services/media_service.py", line 80, in add_media
+    title_provider = TitleProvider(title.id, provider.id, show["Provider"]["Url"])
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 287, in __get__
+    return self.impl.get(instance_state(instance), dict_)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 718, in get
+    value = state._load_expired(state, passive)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\state.py", line 652, in _load_expired
+    self.manager.deferred_scalar_loader(self, toload)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\loading.py", line 946, in load_scalar_attributes
+    "attribute refresh operation cannot proceed" % (state_str(state))
+sqlalchemy.orm.exc.DetachedInstanceError: Instance <Provider at 0x28eae272a58> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
+2020-07-27 16:58:16,938 - root - ERROR - Exception while parsing media json
+Instance <Provider at 0x28eae272a58> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
+Traceback (most recent call last):
+  File "C:/work/github/whereismyshow/DataAccess/Services/media_service.py", line 80, in add_media
+    title_provider = TitleProvider(title.id, provider.id, show["Provider"]["Url"])
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 287, in __get__
+    return self.impl.get(instance_state(instance), dict_)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 718, in get
+    value = state._load_expired(state, passive)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\state.py", line 652, in _load_expired
+    self.manager.deferred_scalar_loader(self, toload)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\loading.py", line 946, in load_scalar_attributes
+    "attribute refresh operation cannot proceed" % (state_str(state))
+sqlalchemy.orm.exc.DetachedInstanceError: Instance <Provider at 0x28eae272a58> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)

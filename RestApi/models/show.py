@@ -1,8 +1,8 @@
 import json
 from typing import Dict, List, Any, Union
 
-from Model.provider import Provider
-from Model.external_link import ExternalLink
+from models.provider import Provider
+from models.external_link import ExternalLink
 from utils.logger import Logger
 class Show(object):
     Id:str = None
@@ -74,6 +74,6 @@ class Show(object):
         return json.dumps(dictionary)
 
 if __name__ == "__main__":
-    from Services.mock_service import MockService
+    from services.mock_service import MockService
     shows = Show().getShows(MockService().getData())
     print(shows)

@@ -856,3 +856,51 @@ TypeError: count() takes exactly one argument (0 given)
 2020-07-27 09:15:38,693 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 2020-07-27 09:15:42,921 - werkzeug - INFO - 127.0.0.1 - - [27/Jul/2020 09:15:42] "[37mPOST /api/v1/addmedia HTTP/1.1[0m" 200 -
 2020-07-27 09:15:42,921 - werkzeug - INFO - 127.0.0.1 - - [27/Jul/2020 09:15:42] "[37mPOST /api/v1/addmedia HTTP/1.1[0m" 200 -
+2020-07-27 17:00:01,248 - werkzeug - INFO -  * Restarting with stat
+2020-07-27 17:00:01,248 - werkzeug - INFO -  * Restarting with stat
+2020-07-27 17:00:02,300 - werkzeug - WARNING -  * Debugger is active!
+2020-07-27 17:00:02,300 - werkzeug - WARNING -  * Debugger is active!
+2020-07-27 17:00:02,314 - werkzeug - INFO -  * Debugger PIN: 273-249-106
+2020-07-27 17:00:02,314 - werkzeug - INFO -  * Debugger PIN: 273-249-106
+2020-07-27 17:00:02,326 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2020-07-27 17:00:02,326 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2020-07-27 17:00:32,086 - root - ERROR - Exception while parsing media json
+Instance <Title at 0x18b53f1ac88> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
+Traceback (most recent call last):
+  File "C:\work\github\whereismyshow\DataAccess\Services\media_service.py", line 80, in add_media
+    title_provider = TitleProvider(title.id, provider.id, show["Provider"]["Url"])
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 287, in __get__
+    return self.impl.get(instance_state(instance), dict_)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 718, in get
+    value = state._load_expired(state, passive)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\state.py", line 652, in _load_expired
+    self.manager.deferred_scalar_loader(self, toload)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\loading.py", line 946, in load_scalar_attributes
+    "attribute refresh operation cannot proceed" % (state_str(state))
+sqlalchemy.orm.exc.DetachedInstanceError: Instance <Title at 0x18b53f1ac88> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
+2020-07-27 17:00:32,086 - root - ERROR - Exception while parsing media json
+Instance <Title at 0x18b53f1ac88> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
+Traceback (most recent call last):
+  File "C:\work\github\whereismyshow\DataAccess\Services\media_service.py", line 80, in add_media
+    title_provider = TitleProvider(title.id, provider.id, show["Provider"]["Url"])
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 287, in __get__
+    return self.impl.get(instance_state(instance), dict_)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\attributes.py", line 718, in get
+    value = state._load_expired(state, passive)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\state.py", line 652, in _load_expired
+    self.manager.deferred_scalar_loader(self, toload)
+  File "C:\Users\vlekkala\AppData\Local\Programs\Python\Python36\lib\site-packages\sqlalchemy\orm\loading.py", line 946, in load_scalar_attributes
+    "attribute refresh operation cannot proceed" % (state_str(state))
+sqlalchemy.orm.exc.DetachedInstanceError: Instance <Title at 0x18b53f1ac88> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: http://sqlalche.me/e/13/bhk3)
+2020-07-27 17:00:32,129 - werkzeug - INFO - 127.0.0.1 - - [27/Jul/2020 17:00:32] "[35m[1mPOST /api/v1/addmedia HTTP/1.1[0m" 500 -
+2020-07-27 17:00:32,129 - werkzeug - INFO - 127.0.0.1 - - [27/Jul/2020 17:00:32] "[35m[1mPOST /api/v1/addmedia HTTP/1.1[0m" 500 -
+2020-07-27 17:01:37,117 - werkzeug - INFO -  * Restarting with stat
+2020-07-27 17:01:37,117 - werkzeug - INFO -  * Restarting with stat
+2020-07-27 17:01:39,157 - werkzeug - WARNING -  * Debugger is active!
+2020-07-27 17:01:39,157 - werkzeug - WARNING -  * Debugger is active!
+2020-07-27 17:01:39,176 - werkzeug - INFO -  * Debugger PIN: 273-249-106
+2020-07-27 17:01:39,176 - werkzeug - INFO -  * Debugger PIN: 273-249-106
+2020-07-27 17:01:39,190 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2020-07-27 17:01:39,190 - werkzeug - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2020-07-27 17:02:02,908 - werkzeug - INFO - 127.0.0.1 - - [27/Jul/2020 17:02:02] "[37mPOST /api/v1/addmedia HTTP/1.1[0m" 200 -
+2020-07-27 17:02:02,908 - werkzeug - INFO - 127.0.0.1 - - [27/Jul/2020 17:02:02] "[37mPOST /api/v1/addmedia HTTP/1.1[0m" 200 -
