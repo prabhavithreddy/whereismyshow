@@ -14,9 +14,9 @@ class Reference(Base):
     url = Column('url', String)
     inserted_date = Column('inserted_date', String, default=datetime.utcnow())
 
-    def __init__(self, name: str, icon_url:str):
+    def __init__(self, name: str, url:str):
         self.name = name
-        self.url = icon_url
+        self.url = url
 
     def __repr__(self):
         dictionary = dict()

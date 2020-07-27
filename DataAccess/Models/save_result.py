@@ -12,6 +12,9 @@ class SaveResult:
         self.message = message
         self.error = error
 
+    def json(self):
+        return json.dumps(self.__dict__)
+
     def __str__(self) -> str:
         dictionary = dict()
         dictionary['is_saved'] = self.is_saved

@@ -11,8 +11,8 @@ class TitleReferences(Base):
 
     id = Column('id', Integer, primary_key=True)
     title_id = Column('title_id', Integer)
-    reference_id = Column('provider_id', Integer)
-    meta_data = Column('url', String)
+    reference_id = Column('reference_id', Integer)
+    meta_data = Column('meta_data', String)
     inserted_date = Column('inserted_date', String, default=datetime.utcnow())
 
     def __init__(self, title_id: int, reference_id:int, meta_data: str):

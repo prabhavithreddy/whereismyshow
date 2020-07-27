@@ -4,7 +4,8 @@ import json
 from Base.base_class import BaseClass
 
 class ConfigProperties(BaseClass):
-    
+
+    Message = None
     Server = None
     UserName = None
     Password = None
@@ -32,6 +33,7 @@ class ConfigProperties(BaseClass):
         if not config['Dialect']:
             raise ValueError("dialect is required in the config file.")
 
+        self.Message = config["Message"] or "Welcome to DataAccess"
         self.Server = config['Server']
         self.UserName = config['UserName']
         self.Password = config['Password']
@@ -39,7 +41,7 @@ class ConfigProperties(BaseClass):
         self.Port = config['Port']
         self.Dialect = config['Dialect']
 
-config = ConfigProperties(r"..\app.json")
+config = ConfigProperties("app.json")
 
 if __name__ == "__main__":
     print(ConfigProperties(r"..\app.json"))

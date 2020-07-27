@@ -13,7 +13,7 @@ class Title(Base):
     name = Column('name', String)
     inserted_date = Column('inserted_date', String, default=datetime.utcnow())
 
-    def __init__(self, title_id:str, picture:str, name:str):
+    def __init__(self, title_id:str = None, picture:str = None, name:str = None):
         self.title_id = title_id
         self.picture = picture
         self.name = name

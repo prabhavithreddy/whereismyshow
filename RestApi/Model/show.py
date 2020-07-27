@@ -67,10 +67,10 @@ class Show(object):
         dictionary["Id"] = self.Id
         dictionary["ImageUrl"] = self.ImageUrl
         dictionary["Title"] = self.Title
-        dictionary["Provider"] = str(self.Provider)
+        dictionary["Provider"] = self.Provider.dict()
         dictionary["ExternalLinks"] = list()
         for externalLink in self.ExternalLinks:
-            dictionary["ExternalLinks"].append(str(externalLink))
+            dictionary["ExternalLinks"].append(externalLink.dict())
         return json.dumps(dictionary)
 
 if __name__ == "__main__":

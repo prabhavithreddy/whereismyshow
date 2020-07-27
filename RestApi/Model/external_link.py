@@ -10,12 +10,14 @@ class ExternalLink(object):
         self.Url = url
         self.Name = name
 
-    def __repr__(self):
+    def dict(self):
         dictionary = dict()
         dictionary["Id"] = self.Id
         dictionary["Url"] = self.Url
         dictionary["Name"] = self.Name
-        return json.dumps(dictionary)
+        return dictionary
+    def __repr__(self):
+        return json.dumps(self.dict())
 
 if __name__ == "__main__":
     externalLink = ExternalLink("tt4052886","IMDB","https://www.imdb.com/title/tt4052886")

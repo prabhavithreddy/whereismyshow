@@ -1,4 +1,5 @@
 {
+  "Message": "Welcome to DataAccess",
   "Environment": "dev",
   "Server": "localhost",
   "UserName": "svc_developer",
