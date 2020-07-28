@@ -60,8 +60,8 @@ class ConfigProperties(BaseClass):
 
 
 
-#config = ConfigProperties("app.json")
-config = ConfigProperties(r"..\app.json")
+config = ConfigProperties("app.json")
+#config = ConfigProperties(r"..\app.json")
 
 if __name__ == "__main__":
     print(ConfigProperties(r"..\app.json"))

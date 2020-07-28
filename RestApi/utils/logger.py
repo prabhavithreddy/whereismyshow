@@ -2,27 +2,26 @@ import logging
 import time
 from logging.handlers import TimedRotatingFileHandler
 
-
-class Logger(object):
-    default_file_path = "../log.txt"
-    logger = None
-    def __init__(self, module):
-
-        handler = TimedRotatingFileHandler(self.default_file_path,
+default_file_path = "../log.txt"
+handler = TimedRotatingFileHandler(default_file_path,
                                            when="d",
                                            interval=1,
                                            backupCount=5)
+
+class Logger(object):
+    logger = None
+    def __init__(self, module):
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         handler.setFormatter(formatter)
-        root = logging.getLogger()
-        root.setLevel("INFO")
-        root.addHandler(handler)
+        self.logger = logging.getLogger()
+        self.logger.setLevel("INFO")
+        self.logger.addHandler(handler)
 
     def info(self, message):
-        logging.info(message)
+        self.logger.info(message)
 
     def error(self, error):
-        logging.exception(error)
+        self.logger.error(error)
 
 
 if __name__ == "__main__":

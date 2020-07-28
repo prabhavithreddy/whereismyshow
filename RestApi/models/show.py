@@ -14,12 +14,16 @@ class Show(object):
     def __init__(self):
         self.ExternalLinks = list()
 
-    def getShows(self, json_data: str):
+    def getShows(self, json_data):
         shows = list()
         if not json_data:
             return shows
         try:
-            data = json.loads(json_data)
+            data = None
+            if isinstance(json_data, str):
+                data = json.loads(json_data)
+            else:
+                data = json_data
             if not data["results"]:
                 return shows
             for result in data["results"]:
@@ -38,23 +42,33 @@ class Show(object):
                 if not result["external_ids"]:
                     shows.append(show.dict())
                     return shows
-
-                show.ExternalLinks.append(
-                    ExternalLink
-                        (
-                            result["external_ids"]["imdb"]["id"],
-                            "IMDB",
-                            result["external_ids"]["imdb"]["url"]
-                        ).dict()
-                )
-                show.ExternalLinks.append(
-                    ExternalLink
-                        (
-                            result["external_ids"]["wiki_data"]["id"],
-                            "WIKI",
-                            result["external_ids"]["wiki_data"]["url"]
-                        ).dict()
-                )
+                if result["external_ids"]["imdb"]:
+                    show.ExternalLinks.append(
+                        ExternalLink
+                            (
+                                result["external_ids"]["imdb"]["id"],
+                                "IMDB",
+                                result["external_ids"]["imdb"]["url"]
+                            ).dict()
+                    )
+                if result["external_ids"]["tmdb"]:
+                    show.ExternalLinks.append(
+                        ExternalLink
+                            (
+                                result["external_ids"]["tmdb"]["id"],
+                                "TMDB",
+                                result["external_ids"]["tmdb"]["url"]
+                            ).dict()
+                    )
+                if result["external_ids"]["wiki_data"]:
+                    show.ExternalLinks.append(
+                        ExternalLink
+                            (
+                                result["external_ids"]["wiki_data"]["id"],
+                                "WIKI",
+                                result["external_ids"]["wiki_data"]["url"]
+                            ).dict()
+                    )
                 shows.append(show.dict())
             return shows
 
@@ -69,5 +83,5 @@ class Show(object):
 
 if __name__ == "__main__":
     from services.mock_service import MockService
-    shows = Show().getShows(MockService().getData())
+    shows = Show().getShows(MockService("..\Results.json").getData())
     print(json.dumps(shows))

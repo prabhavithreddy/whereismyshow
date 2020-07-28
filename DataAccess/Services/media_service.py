@@ -15,7 +15,7 @@ import json
 from utils.logger import Logger
 
 
-class MediaService2(object):
+class MediaService(object):
     provider_repository = ProviderRepository()
     reference_repository = ReferenceRepository()
     title_repository = TitleRepository()
@@ -112,5 +112,5 @@ class MediaService2(object):
 
 
 if __name__ == "__main__":
-    media_service = MediaService2()
+    media_service = MediaService()
     print(media_service.add_media(open("shows.json","r").read()))
