@@ -10,7 +10,7 @@ class SaveResult:
 
         self.is_saved = is_saved
         self.message = message
-        self.error = error
+        self.error = str(error)
 
     def json(self):
         return json.dumps(self.__dict__)

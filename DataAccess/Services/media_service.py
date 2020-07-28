@@ -1,5 +1,3 @@
-from typing import List
-
 from Models.save_result import SaveResult
 from ORM.provider import Provider
 from ORM.reference import Reference
@@ -17,7 +15,7 @@ import json
 from utils.logger import Logger
 
 
-class MediaService(object):
+class MediaService2(object):
     provider_repository = ProviderRepository()
     reference_repository = ReferenceRepository()
     title_repository = TitleRepository()
@@ -39,7 +37,6 @@ class MediaService(object):
     def add_media(self, media_json) -> SaveResult:
 
         titles = list()
-        references = list()
 
         if not media_json:
             return SaveResult(False, "There is no data available")
@@ -54,39 +51,38 @@ class MediaService(object):
                 return SaveResult(False, "There is no data.")
 
             for show in show_titles:
-                title = Title()
                 if not show["Id"] or not show["Title"] or not show["Provider"]:
                     self.logger.info("Show doesn't contain the required information.\n{}".format(json.dumps(show)))
                     continue
+
+                if self.title_repository.query().filter_by(title_id=show["Id"]).scalar():
+                    self.logger.info("Title Id: {} already exists in database".format(show["Id"]))
+                    continue
+
+                title = Title()
                 title.title_id = show["Id"]
                 title.name = show["Title"]
                 title.picture = show["ImageUrl"]
 
-                save_result = self.title_repository.Add(title)
-                if not save_result.is_saved:
-                    self.logger.info("Unable to save the show.\n{}".format(json.dumps(show)))
-                    continue
-                else:
-                    titles.append(title)
-
                 provider_name = show["Provider"]["Name"]
-                provider = None
-                if provider_name not in [provider.name for provider in self.Providers]:
+                provider = next(filter(lambda r: r.name == provider_name, self.Providers),None)
+                if not provider:
                     provider = Provider(provider_name, show["Provider"]["Icon"])
                     save_result = self.provider_repository.Add(provider)
                     if not save_result.is_saved:
                         continue
+                    else:
+                        self.Providers.append(provider)
 
                 title_provider = TitleProvider(title.id, provider.id, show["Provider"]["Url"])
-                save_result = self.title_provider_repository.Add(title_provider)
-                if not save_result.is_saved:
-                    continue
-                title_reference = None
+                title.title_provider.append(title_provider)
+
                 if not show["ExternalLinks"] or len(show["ExternalLinks"]) == 0:
                     self.logger.info("Show doesn't contain any ExternalLinks.")
                 else:
                     for externalLink in show["ExternalLinks"]:
-                        if externalLink["Name"] not in [reference.name for reference in self.References]:
+                        reference = next(filter(lambda r: r.name == externalLink["Name"], self.References),None)
+                        if not reference:
                             url = externalLink["Url"]
                             reference = Reference(externalLink["Name"], url[:url.rfind('/')])
                             save_result = self.reference_repository.Add(reference)
@@ -94,19 +90,27 @@ class MediaService(object):
                                 self.logger.info("Unable to save the references:\n {}".format(json.dumps(reference)))
                                 continue
                             else:
-                                title_reference = TitleReferences(title.id, reference.id, externalLink["Id"])
-                                self.title_references_repository.Add(title_reference)
                                 self.References.append(reference)
 
-            if len(titles) == 0:
-                return SaveResult(False, "Unable to add any titles.")
+                        title_reference = TitleReferences(title.id, reference.id, externalLink["Id"])
+                        title.title_references.append(title_reference)
+                        self.References.append(reference)
+
+                titles.append(title)
+
+            if len(titles) > 0:
+                save_result = self.title_repository.AddBulk(titles)
+                if save_result.is_saved:
+                    return SaveResult(True, "Titles added successfully.")
+                else:
+                    return SaveResult(False, "Unable to add any titles.")
             else:
-                return SaveResult(True, "Titles added successfully.")
+                return SaveResult(False, "Unable to add any titles.")
         except Exception as ex:
             self.logger.error("Exception while parsing media json", ex)
             return SaveResult(False, "Exception while adding media.", ex)
 
 
 if __name__ == "__main__":
-    media_service = MediaService()
+    media_service = MediaService2()
     print(media_service.add_media(open("shows.json","r").read()))

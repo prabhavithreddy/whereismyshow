@@ -28,15 +28,15 @@ class Show(object):
                 show.ImageUrl = result["picture"]
                 show.Title = result["name"]
                 if not result["locations"]:
-                    shows.append(show)
+                    shows.append(show.dict())
                     return shows
 
                 show.Provider = Provider(result["locations"][0]["id"],
                                          result["locations"][0]["display_name"],
                                          result["locations"][0]["url"],
-                                         result["locations"][0]["icon"])
+                                         result["locations"][0]["icon"]).dict()
                 if not result["external_ids"]:
-                    shows.append(show)
+                    shows.append(show.dict())
                     return shows
 
                 show.ExternalLinks.append(
@@ -45,7 +45,7 @@ class Show(object):
                             result["external_ids"]["imdb"]["id"],
                             "IMDB",
                             result["external_ids"]["imdb"]["url"]
-                        )
+                        ).dict()
                 )
                 show.ExternalLinks.append(
                     ExternalLink
@@ -53,27 +53,21 @@ class Show(object):
                             result["external_ids"]["wiki_data"]["id"],
                             "WIKI",
                             result["external_ids"]["wiki_data"]["url"]
-                        )
+                        ).dict()
                 )
-                shows.append(show)
+                shows.append(show.dict())
             return shows
 
         except Exception as ex:
             self.logger.error("Exception while parsing Shows: {}".format(ex))
             return shows
+    def dict(self):
+        return self.__dict__
 
     def __repr__(self):
-        dictionary: Dict[str, Union[str, List[Any]]] = dict()
-        dictionary["Id"] = self.Id
-        dictionary["ImageUrl"] = self.ImageUrl
-        dictionary["Title"] = self.Title
-        dictionary["Provider"] = self.Provider.dict()
-        dictionary["ExternalLinks"] = list()
-        for externalLink in self.ExternalLinks:
-            dictionary["ExternalLinks"].append(externalLink.dict())
-        return json.dumps(dictionary)
+        return json.dumps(self.dict())
 
 if __name__ == "__main__":
     from services.mock_service import MockService
     shows = Show().getShows(MockService().getData())
-    print(shows)
+    print(json.dumps(shows))

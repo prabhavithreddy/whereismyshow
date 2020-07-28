@@ -1,5 +1,7 @@
 import json
 from sqlalchemy import Column, Integer, String
+from sqlalchemy.orm import relationship
+
 from Models.base import Base
 from datetime import datetime
 
@@ -12,6 +14,9 @@ class Title(Base):
     picture = Column('picture', String)
     name = Column('name', String)
     inserted_date = Column('inserted_date', String, default=datetime.utcnow())
+    title_references = relationship('TitleReferences', backref = 'title', lazy = True, cascade = "all, delete-orphan")
+    title_provider = relationship('TitleProvider', backref = 'title', lazy = True, cascade = "all, delete-orphan")
+
 
     def __init__(self, title_id:str = None, picture:str = None, name:str = None):
         self.title_id = title_id

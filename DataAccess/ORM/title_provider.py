@@ -1,8 +1,10 @@
 import json
 from datetime import datetime
 
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, ForeignKey
 from Models.base import Base
+from ORM.provider import Provider
+from ORM.title import Title
 
 
 class TitleProvider(Base):
@@ -10,8 +12,8 @@ class TitleProvider(Base):
     __table_args__ = {'schema': 'dbo'}
 
     id = Column('id', Integer, primary_key=True)
-    title_id = Column('title_id', Integer)
-    provider_id = Column('provider_id', Integer)
+    title_id = Column('title_id', Integer, ForeignKey(Title.id))
+    provider_id = Column('provider_id', Integer, ForeignKey(Provider.id))
     url = Column('url', String)
     inserted_date = Column('inserted_date', String, default=datetime.utcnow())
 

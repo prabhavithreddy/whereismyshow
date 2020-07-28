@@ -11,11 +11,8 @@ class ExternalLink(object):
         self.Name = name
 
     def dict(self):
-        dictionary = dict()
-        dictionary["Id"] = self.Id
-        dictionary["Url"] = self.Url
-        dictionary["Name"] = self.Name
-        return dictionary
+        return self.__dict__
+
     def __repr__(self):
         return json.dumps(self.dict())
 

@@ -19,6 +19,7 @@ class RepositoryBase(ABC):
         self.connection_strings = ConnectionStrings()
         self.engine = create_engine(self.connection_strings.get_sql_alchemy_con_string(), pool_pre_ping=True)
         self.Session = sessionmaker(bind=self.engine)
+        self.Session.expire_on_commit = False
 
     def query(self, orm):
         if orm is None:

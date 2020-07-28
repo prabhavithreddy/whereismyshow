@@ -2,6 +2,8 @@ import json
 from datetime import datetime
 
 from sqlalchemy import Column, Integer, String, DATETIME
+from sqlalchemy.orm import relationship
+
 from Models.base import Base
 
 

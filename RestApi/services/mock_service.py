@@ -3,7 +3,7 @@ import json
 class MockService(object):
     Data = None
     def __init__(self):
-        self.Data = open("..\Results.json",mode="r").read()
+        self.Data = open("Results.json",mode="r").read()
     def getData(self):
         return self.Data
 
