@@ -14,16 +14,15 @@ class Provider(Base):
     id = Column('id', Integer, primary_key=True)
     name = Column('name', String)
     icon_url = Column('icon_url', String)
+    url = Column('url', String)
+    logo = Column('logo', String)
     inserted_date = Column('inserted_date', String, default=datetime.utcnow())
 
-    def __init__(self, name: str, icon_url: str):
+    def __init__(self, name: str, icon_url: str, url:str = None, logo:str = None):
         self.name = name
         self.icon_url = icon_url
+        self.url = url
+        self.logo = logo
 
     def __repr__(self):
-        dictionary = dict()
-        dictionary['id'] = self.id
-        dictionary['name'] = self.name
-        dictionary['icon_url'] = self.icon_url
-        dictionary['inserted_date'] = self.inserted_date
-        return json.dumps(dictionary)
+        return json.dumps(self.__dict__)

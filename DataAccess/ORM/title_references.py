@@ -22,10 +22,4 @@ class TitleReferences(Base):
         self.meta_data = meta_data
 
     def __repr__(self):
-        dictionary = dict()
-        dictionary['id'] = self.id
-        dictionary['title_id'] = self.title_id
-        dictionary['reference_id'] = self.reference_id
-        dictionary['meta_data'] = self.meta_data
-        dictionary['inserted_date'] = self.inserted_date
-        return json.dumps(dictionary)
+        return json.dumps(self.__dict__)

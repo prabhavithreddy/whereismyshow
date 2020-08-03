@@ -13,10 +13,15 @@ server.get('/', (req, res) => {
     <html>
       <head>
         <title>Sample React App</title>
-      </head>
+      </head>      
       <body>
-        <div id="mountNode">${initialMarkup}</div>
+        <header>Header</header>
+        <section>
+          <nav></nav>        
+          <div id="mountNode">${initialMarkup}</div>
+        </section>
         <script src="/main.js"></script>
+        <footer>Footer</footer>
       </body>
     </html>
   `)

@@ -30,7 +30,7 @@ class FeedService(object):
         try:
             try:
                 optimized = Show().getShows(MockService().getData())
-                self.post_to_db(optimized)
+                #self.post_to_db(optimized)
             except Exception as ex:
                 self.logger.error("DB service couldn't able to process this result.",ex)
             return optimized

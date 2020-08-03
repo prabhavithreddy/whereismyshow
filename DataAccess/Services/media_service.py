@@ -11,6 +11,7 @@ from Repositories.title_provider_repository import TitleProviderRepository
 from Repositories.title_references_repository import TitleReferencesRepository
 
 import json
+from urllib.parse import urlparse
 
 from utils.logger import Logger
 
@@ -67,7 +68,11 @@ class MediaService(object):
                 provider_name = show["Provider"]["Name"]
                 provider = next(filter(lambda r: r.name == provider_name, self.Providers),None)
                 if not provider:
-                    provider = Provider(provider_name, show["Provider"]["Icon"])
+                    provider_base_url = None
+                    if not provider["url"]:
+                        parseResult = urlparse(provider["url"])
+                        provider_base_url = "{}://{}".format(parseResult.scheme, parseResult.netloc)
+                    provider = Provider(provider_name, show["Provider"]["Icon"], provider_base_url)
                     save_result = self.provider_repository.Add(provider)
                     if not save_result.is_saved:
                         continue

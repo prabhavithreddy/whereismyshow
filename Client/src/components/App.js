@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
+import Form from './Form';
+import Titles from './Titles';
 
 export default function App() {
-  const [count, setCount] = useState(0);
+  const [items, setState] = useState([])
+  const UpdateResults = (data)=>{
+    setState(data);
+  };
   return (
     <div>
-      This is a sample stateful and server-side
-      rendered React application.
-      <br />
-      <br />
-      Here is a button that will track
-      how many times you click it:
-      <br />
-      <br />
-      <button onClick={() => setCount(count + 1)}>{count}</button>
+        <Form UpdateResults = {UpdateResults}/>
+        <Titles Items = {items}/>
     </div>
   );
 }

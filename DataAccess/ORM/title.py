@@ -24,10 +24,4 @@ class Title(Base):
         self.name = name
 
     def __repr__(self):
-        dictionary = dict()
-        dictionary['id'] = self.id
-        dictionary['title_id'] = self.title_id
-        dictionary['picture'] = self.picture
-        dictionary['name'] = self.name
-        dictionary['inserted_date'] = self.inserted_date
-        return json.dumps(dictionary)
+        return json.dumps(self.__dict__)

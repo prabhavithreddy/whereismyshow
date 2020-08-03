@@ -2,7 +2,7 @@ import json
 
 class MockService(object):
     Data = None
-    def __init__(self, file_path="..\Results.json"):
+    def __init__(self, file_path="Results.json"):
         self.Data = open(file_path,mode="r").read()
     def getData(self):
         return self.Data

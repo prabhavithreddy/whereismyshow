@@ -21,9 +21,4 @@ class Reference(Base):
         self.url = url
 
     def __repr__(self):
-        dictionary = dict()
-        dictionary['id'] = self.id
-        dictionary['name'] = self.name
-        dictionary['url'] = self.url
-        dictionary['inserted_date'] = self.inserted_date
-        return json.dumps(dictionary)
+        return json.dumps(self.__dict__)
