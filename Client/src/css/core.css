@@ -1,15 +1,22 @@
 body 
 {
-    background-color: rgb(22, 24, 24);
+    margin: 0px;
 }
-h2
-{
-    color: gold;
-}
+
 div.Profile {
     margin: 1%;
 }
-div.ProfileContent{
+div.ProfileContent, div.providers{
     display: inline-block;
-    padding-left: 2%;
 }
+
+div.providers img{
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+header > h2.title{
+    color: whitesmoke;
+    text-align: center;
+}
+

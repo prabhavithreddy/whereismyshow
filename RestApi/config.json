@@ -3,5 +3,6 @@
   "Environment": "dev",
   "Feed": "https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup?term={0}&country=in",
   "FeedKey": "d55e9ad284mshbf77641ddacb855p17320ajsndde4abae3bf7",
-  "DataBaseService": "http://localhost:5000/api/v1/addmedia"
+  "DataBaseService": "http://localhost:5000/api/v1/addmedia",
+  "GetProviders": "http://localhost:5000/api/v1/getproviders"
 }

@@ -1,0 +1,33 @@
+html, body{
+    height: 100%;
+}
+
+body {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: min-content auto 10em;
+}
+
+header{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    background-color: #121212;
+}
+
+section{
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+footer{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+aside{
+    grid-column-start: 2;
+    grid-column-end: 3;
+}

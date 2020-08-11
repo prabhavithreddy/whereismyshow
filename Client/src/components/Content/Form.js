@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Search from './Search'
-
+import FormControl from 'react-bootstrap/FormControl'
 const fetch = require("node-fetch");
 
 export default function Form(props){
@@ -18,10 +18,11 @@ export default function Form(props){
         //props.UpdateResults(Feed());
     };
     return(
-            <div>
-                <form onSubmit = {handleSubmit}>
-                    <Search/>
-                </form>
-            </div>
+            // <div>
+            //     <form onSubmit = {handleSubmit}>
+            //         <Search/>
+            //     </form>
+            // </div>
+            <FormControl type="text" placeholder="Search for Movies/Shows" className=" mr-sm-2" />
         )
 }

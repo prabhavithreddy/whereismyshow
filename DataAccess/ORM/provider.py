@@ -1,3 +1,4 @@
+import inspect
 import json
 from datetime import datetime
 
@@ -24,5 +25,14 @@ class Provider(Base):
         self.url = url
         self.logo = logo
 
+    def dict(self):
+        dictionary = dict()
+        dictionary['id'] = self.id
+        dictionary['name'] = self.name
+        dictionary['icon_url'] = self.icon_url
+        dictionary['url'] = self.url
+        dictionary['logo'] = self.logo
+        return dictionary
+
     def __repr__(self):
-        return json.dumps(self.__dict__)
+        return json.dumps(self.dict())

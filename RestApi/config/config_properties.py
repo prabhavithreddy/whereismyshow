@@ -10,6 +10,7 @@ class ConfigProperties(BaseClass):
     Feed:str = None
     FeedKey:str = None
     DataBaseService:str = None
+    GetProviders:str = None
 
     def __init__(self, config_file):
         if not os.path.exists(config_file):
@@ -27,12 +28,14 @@ class ConfigProperties(BaseClass):
             self.Feed = config['Feed']
             self.FeedKey = config['FeedKey']
             self.DataBaseService = config['DataBaseService']
+            self.GetProviders = config['GetProviders']
 
         else:
             self.Message = get_parameter("/Prod/RestApi/Message") or "Welcome to RestApi"
             self.Feed = get_parameter('/Prod/RestApi/Feed')
             self.FeedKey = get_parameter('/Prod/RestApi/FeedKey')
             self.DataBaseService = get_parameter('/Prod/RestApi/DataBaseService')
+            self.GetProviders = get_parameter('/Prod/RestApi/GetProviders')
 
         if not self.Message:
             raise ValueError("Message is required in the config file.")

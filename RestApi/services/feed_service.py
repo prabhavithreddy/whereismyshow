@@ -49,6 +49,17 @@ class FeedService(object):
         else:
             self.logger.info(db_response.json())
 
+    def get_providers(self):
+        headers = {
+            'Content-type': 'application/json',
+            'Accept': 'text/plain',
+        }
+        db_response = requests.get(config.GetProviders, headers=headers)
+        if db_response.status_code != 200:
+            self.logger.info("GetProviders couldn't able to process this result.\n")
+        else:
+            return db_response.json()
+
 if __name__ == "__main__":
     feed_service = FeedService()
     print(feed_service.get_titles_test("Test"))

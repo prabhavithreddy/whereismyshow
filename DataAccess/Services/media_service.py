@@ -35,6 +35,12 @@ class MediaService(object):
     def refresh_references(self):
         self.References = self.reference_repository.query().all()
 
+    def get_providers(self):
+        list_of_providers = list()
+        for provider in self.provider_repository.query().all():
+            list_of_providers.append(provider.dict())
+        return list_of_providers
+
     def add_media(self, media_json) -> SaveResult:
 
         titles = list()
@@ -69,10 +75,12 @@ class MediaService(object):
                 provider = next(filter(lambda r: r.name == provider_name, self.Providers),None)
                 if not provider:
                     provider_base_url = None
+                    provider_logo_url = None
                     if not provider["url"]:
                         parseResult = urlparse(provider["url"])
                         provider_base_url = "{}://{}".format(parseResult.scheme, parseResult.netloc)
-                    provider = Provider(provider_name, show["Provider"]["Icon"], provider_base_url)
+                        provider_logo_url = "images/{}".format(provider_name.replace(' ', ''))
+                    provider = Provider(provider_name, show["Provider"]["Icon"], provider_base_url, provider_logo_url)
                     save_result = self.provider_repository.Add(provider)
                     if not save_result.is_saved:
                         continue
