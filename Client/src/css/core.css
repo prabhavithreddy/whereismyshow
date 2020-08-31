@@ -1,9 +1,14 @@
+div{
+    border-style: solid;
+    border-color: red;
+    border-width: 0.5px;
+}
 body 
 {
     margin: 0px;
 }
 
-div.Profile {
+/* div.Profile {
     margin: 1%;
 }
 div.ProfileContent, div.providers{
@@ -13,10 +18,12 @@ div.ProfileContent, div.providers{
 div.providers img{
     padding-left: 1rem;
     padding-right: 1rem;
+} */
+
+body>section{
+    padding-top: 2rem;
 }
 
-header > h2.title{
-    color: whitesmoke;
+div.pagination{
     text-align: center;
 }
-
